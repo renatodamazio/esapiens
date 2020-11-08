@@ -23,7 +23,7 @@ export default {
         // console.log(reponame);  
         const url = `https://api.github.com/repos/${pathname}`;
 
-        this.$axios.get(url)
+        this.$axios.get(url) 
         .then((resp) => {
             this.owner = resp.data.owner;
             console.log(resp.data)
