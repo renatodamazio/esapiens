@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "nuxt",
+    "test": "false",
     "build": "nuxt build",
     "start": "nuxt start",
     "generate": "nuxt generate"
@@ -12,7 +13,8 @@
     "@nuxtjs/axios": "^5.12.2",
     "core-js": "^3.6.5",
     "nuxt": "^2.14.6",
-    "vue-debounce": "^2.5.7"
+    "vue-debounce": "^2.5.7",
+    "vuedraggable": "^2.24.3"
   },
   "devDependencies": {}
 }

@@ -20,15 +20,15 @@
 
         <aside class="repos">
             Repositórios.
-            <ul>
-                <li v-for="(repo, key) in repos" :key="key">
+            <draggable v-model="repos">
+                <div v-for="(repo, key) in repos" :key="key">
                     <nuxt-link :to="`/repo/${repo.full_name}`">
                         {{ repo.name }} {{ repo.stargazers_count }}
 
                         {{ repo.description }}
                     </nuxt-link>
-                </li>
-            </ul>
+                </div>
+            </draggable>
         </aside>
     </div>
 </template>
@@ -71,6 +71,10 @@ export default {
             user: [],
             repos: []
         }
+    },
+
+    components: {
+        draggable: () => import('vuedraggable')
     },
 
     mounted() {
