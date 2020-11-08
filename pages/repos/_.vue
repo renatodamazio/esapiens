@@ -1,6 +1,21 @@
 <template>
     <div>
-        Repo: {{ repo }} {{owner}}
+        <img :src="owner.avatar_url" :alt="owner.login" width="100px" height="100px" class="avatar">
+        Repo: {{ repo.name }} 
+
+        {{ repo.watchers }}
+
+        {{ repo.clone_url }}
+
+        {{ repo.watchers_count }}
+
+        {{ repo.description }}
+
+        {{ repo.language }}
+
+        {{ repo.license }}
+
+        {{ repo.stargazers_count }}
     </div>
 </template>
 
@@ -17,16 +32,13 @@ export default {
 
     mounted() {
         let pathname = window.location.pathname;
-
-        pathname = '/repos/octocat/Hello-World'
-        
-        // console.log(reponame);  
-        const url = `https://api.github.com/repos/${pathname}`;
+        const url = `https://api.github.com${pathname}`;
 
         this.$axios.get(url) 
         .then((resp) => {
             this.owner = resp.data.owner;
-            console.log(resp.data)
+            this.repo = resp.data;
+            // console.log(resp.data)
         })
     }
 }

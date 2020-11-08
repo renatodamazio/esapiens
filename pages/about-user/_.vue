@@ -23,7 +23,7 @@
             <draggable v-model="repos" class="list-group" tag="ul">
                 <transition-group type="transition" :name="!drag ? 'flip-list' : null">
                     <div v-for="(repo, key) in repos" :key="key" class="list-group-item">
-                        <nuxt-link :to="`/repo/${repo.full_name}`">
+                        <nuxt-link :to="`/repos/${repo.full_name}`">
                             {{ repo.name }} {{ repo.stargazers_count }}
 
                             {{ repo.description }}
@@ -92,7 +92,8 @@ export default {
     data() {
         return {
             user: [],
-            repos: []
+            repos: [],
+            drag: false
         }
     },
 
