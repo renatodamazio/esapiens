@@ -20,28 +20,30 @@
 
         <aside class="repos">
             Repositórios.
-            <draggable v-model="repos">
-                <div v-for="(repo, key) in repos" :key="key">
-                    <nuxt-link :to="`/repo/${repo.full_name}`">
-                        {{ repo.name }} {{ repo.stargazers_count }}
+            <draggable v-model="repos" class="list-group" tag="ul">
+                <transition-group type="transition" :name="!drag ? 'flip-list' : null">
+                    <div v-for="(repo, key) in repos" :key="key" class="list-group-item">
+                        <nuxt-link :to="`/repo/${repo.full_name}`">
+                            {{ repo.name }} {{ repo.stargazers_count }}
 
-                        {{ repo.description }}
-                    </nuxt-link>
-                </div>
+                            {{ repo.description }}
+                        </nuxt-link>
+                    </div>
+                </transition-group>
             </draggable>
         </aside>
     </div>
 </template>
 
 <style scoped>
-    .repos ul {
+    .repos {
         display: flex;
         flex-direction: row;
         flex-wrap: wrap;
         padding: 16px;
     }
 
-    .repos ul li {
+    .repos .items {
         width: 50%;
         flex: 1 0 auto;
         padding: 24px;
@@ -56,6 +58,27 @@
         border-radius: 8px;
         float: left;
     }
+
+    .flip-list-move {
+        transition: transform 0.5s;
+        }
+        .no-move {
+        transition: transform 0s;
+        }
+        .ghost {
+        opacity: 0.5;
+        background: #c8ebfb;
+        }
+        .list-group {
+        min-height: 20px;
+        }
+        .list-group-item {
+        cursor: move;
+        }
+        .list-group-item i {
+        cursor: pointer;
+        }
+
 </style>
 <script>
 import axios from 'axios';
