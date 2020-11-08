@@ -11,7 +11,15 @@ export default {
       { hid: 'description', name: 'description', content: '' }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap'}
+    ],
+    script: [
+      {
+        src: "https://kit.fontawesome.com/b2268db423.js",
+        async: true,
+        body: true
+      }
     ]
   },
   

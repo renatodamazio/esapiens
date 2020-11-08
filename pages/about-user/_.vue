@@ -1,32 +1,47 @@
 <template>
-    <div>
+    <div class="container">
         <div class="user-info">
-            <img :src="user.avatar_url" width="120px" height="120px" class="avatar">
-            <h2>{{ user.name }}</h2>
-            <a :href="user.html_url" target="_blank">Perfil</a>
-            <hr>
-            {{ user.bio }}
+            <img :src="user.avatar_url" width="180px" height="180px" class="avatar">
+            <div class="user-bio">   
+                <h2>{{ user.name }}</h2>
+                <p class="user-login">{{ user.login }}</p>
+                <!-- <a :href="user.html_url" target="_blank">Perfil</a> -->
+                <hr>
+                <div class="user-info-counters">
+                    {{ user.bio }}
 
-            {{ user.location }}
+                    <i class="fas fa-map-marker-alt" v-if="user.location"></i> {{ user.location }}
 
-            {{ user.company }}
+                    {{ user.email }}
 
-            {{ user.public_repos }}
+                    {{ user.company }} <br/><br/>
 
-            {{ user.followers }}
-
-            {{ user.following }}
+                    <i class="fa fa-user-friends"></i>&nbsp;{{ user.followers }} Seguidores
+                    -
+                    {{ user.following }} Seguindo
+                      
+                    {{ user.stargazers_count }}
+                </div>
+            </div>
         </div>
 
         <aside class="repos">
-            Repositórios.
+            <h3 class="title">{{ user.public_repos }} Repositórios.</h3>
             <draggable v-model="repos" class="list-group" tag="ul">
                 <transition-group type="transition" :name="!drag ? 'flip-list' : null">
                     <div v-for="(repo, key) in repos" :key="key" class="list-group-item">
                         <nuxt-link :to="`/repos/${repo.full_name}`">
-                            {{ repo.name }} {{ repo.stargazers_count }}
+                            <h3 class="repo-title">
+                                {{ repo.name }}
+                                <i class="repo-status" :class="repo.disabled ? 'disabled' : ''"></i>
+                            </h3> 
+                            
+                            <div class="repo-description">{{ repo.description ? repo.description : 'Sem descrição'  }}</div>
 
-                            {{ repo.description }}
+                            <div class="repo-footer">
+                                <div class="repo-star"><i class="fa fa-star"></i>{{repo.stargazers_count}}</div>
+                                <div class="repo-star" v-if="repo.language"><i class="fa fa-code"></i>{{repo.language}}</div>
+                            </div>
                         </nuxt-link>
                     </div>
                 </transition-group>
@@ -36,27 +51,127 @@
 </template>
 
 <style scoped>
+    .container {
+        display: flex;
+    }
+    
+    hr {
+        margin: 10px 0;
+    }
+
+    .user-bio {
+        text-align: left;
+        font-size: var(--text-sm);
+    }
+
+    .avatar {
+        border: 2px solid;
+    }
+
+    .user-login {
+        font-weight: 400;
+        opacity: 0.8;
+    }
+
+    .user-info {
+        min-width: 280px;
+        display: inline-block;
+        text-align: center;
+        padding: var(--space-md);
+    }
+
+    .user-info-counters {
+        font-size: var(--text-sm);
+        padding: var(--space-md) 0;
+    }
+
     .repos {
+        padding: var(--space-md) 0;
+    }
+
+    .repo-title {
+        color: rgb(var(--color-primary));
+        font-size: var(--text-base);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .repo-stars {
+        color: rgb(var(--text-base))
+    }
+
+    .repo-star {
+        font-size: var(--space-md);
+    }
+
+    .fa-star {
+        color: rgb(var(--color-warning));
+    }
+
+    .repo-footer {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .repo-status {
+        width: 8px;
+        height: 8px;
+        display: inline-block;
+        background: rgb(var(--color-success));
+        border-radius: 100%;
+    }
+
+    .repo-status.disabled {
+        background: rgb(var(--color-danger));
+    }
+
+    .repo-star i {
+        margin-right: var(--space-sm);
+    }
+
+    .title {
+        padding: var(--space-sm);
+    }
+
+    .repo-description {
+        color: rgb(var(--text-base));
+        opacity: 0.8;
+        flex-grow: 1;
+        font-size: var(--text-sm);
+        padding: var(--space-sm) 0;
+    }
+
+    .list-group > span {
         display: flex;
         flex-direction: row;
         flex-wrap: wrap;
-        padding: 16px;
     }
 
-    .repos .items {
+    .list-group .list-group-item {
         width: 50%;
         flex: 1 0 auto;
         padding: 24px;
         padding: 4px; 
+        background: #fff;
         list-style: none;
     }
 
-    .repos ul li a {
+    .list-group .list-group-item a {
         border: 1px solid #eee;
-        padding: 24px;
+        padding: var(--space-md);
+        height: 140px;
         width: 100%;
+        display: flex;
+        flex-direction: column;
         border-radius: 8px;
         float: left;
+    }
+
+    .list-group .list-group-item a:hover {
+        background: var(--color-primary-light);
+        box-shadow: 0px 0px 4px rgb(var(--color-primary-light));
     }
 
     .flip-list-move {
