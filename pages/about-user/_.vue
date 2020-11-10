@@ -1,29 +1,6 @@
 <template>
     <div class="container">
-        <div class="user-info">
-            <img :src="user.avatar_url" width="180px" height="180px" class="avatar">
-            <div class="user-bio">   
-                <h2>{{ user.name }}</h2>
-                <p class="user-login">{{ user.login }}</p>
-                <!-- <a :href="user.html_url" target="_blank">Perfil</a> -->
-                <hr>
-                <div class="user-info-counters">
-                    {{ user.bio }}
-
-                    <i class="fas fa-map-marker-alt" v-if="user.location"></i> {{ user.location }}
-
-                    {{ user.email }}
-
-                    {{ user.company }} <br/><br/>
-
-                    <i class="fa fa-user-friends"></i>&nbsp;{{ user.followers }} Seguidores
-                    -
-                    {{ user.following }} Seguindo
-                      
-                    {{ user.stargazers_count }}
-                </div>
-            </div>
-        </div>
+        <user-aside :user="user"/>
 
         <aside class="repos">
             <h3 class="title">{{ user.public_repos }} Repositórios.</h3>
@@ -55,48 +32,6 @@
         display: flex;
     }
     
-    hr {
-        margin: 10px 0;
-    }
-
-    .user-bio {
-        text-align: left;
-        font-size: var(--text-sm);
-    }
-
-    .avatar {
-        border: 2px solid;
-    }
-
-    .user-login {
-        font-weight: 400;
-        opacity: 0.8;
-    }
-
-    .user-info {
-        min-width: 280px;
-        display: inline-block;
-        text-align: center;
-        padding: var(--space-md);
-    }
-
-    .user-info-counters {
-        font-size: var(--text-sm);
-        padding: var(--space-md) 0;
-    }
-
-    .repos {
-        padding: var(--space-md) 0;
-    }
-
-    .repo-title {
-        color: rgb(var(--color-primary));
-        font-size: var(--text-base);
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-    }
-
     .repo-stars {
         color: rgb(var(--text-base))
     }
@@ -213,7 +148,8 @@ export default {
     },
 
     components: {
-        draggable: () => import('vuedraggable')
+        draggable: () => import('vuedraggable'),
+        UserAside: () => import('@/components/UserAside.vue')
     },
 
     mounted() {
