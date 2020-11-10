@@ -3,8 +3,8 @@
         <div class="user-info">
             <img :src="user.avatar_url" width="180px" height="180px" class="avatar">
             <div class="user-bio"> 
-                <h2>{{ user.name }}</h2>
-                <p class="user-login">{{ user.login }}</p>
+                <h2 class="text-center">{{ user.name }}</h2>
+                <p class="user-login text-center">{{ user.login }}</p>
                 <hr>
                 <div class="user-info-counters">
                     <div v-if="user.bio" class="user-info-small">
