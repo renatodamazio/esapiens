@@ -8,7 +8,7 @@
       width: 100%;
       height: calc(100vh - 90px);
       text-align: center;
-      padding: 50px;
+      padding: 50px; 
       z-index: -1;
       position: relative;
     }
