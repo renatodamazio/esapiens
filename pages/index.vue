@@ -4,7 +4,7 @@
   </div>
 </template>
 <style scoped>
-    .welcome {
+    .welcome { 
       width: 100%;
       height: calc(100vh - 90px);
       text-align: center;
