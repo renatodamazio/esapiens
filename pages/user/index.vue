@@ -1,5 +1,7 @@
 <template>
     <div class="container">
+        (_id.vue)
+
         <user-aside :user="user"/>
 
         <aside class="repos">
@@ -24,6 +26,9 @@
                 </transition-group>
             </draggable>
         </aside>
+
+
+        <nuxt-child/>
     </div>
 </template>
 

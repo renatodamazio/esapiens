@@ -22,6 +22,22 @@ export default {
       }
     ]
   },
+
+  content: [
+    [
+      'user',
+      {
+        permalink: 'user/:slug',
+        page: 'user/_slug',
+        isPost: false,
+        generate: [
+          // for static build
+          'get',
+          'getAll'
+        ]
+      }
+    ]
+  ],
   
   // Global CSS (https://go.nuxtjs.dev/config-css)
   css: [
@@ -49,5 +65,9 @@ export default {
 
   // Build Configuration (https://go.nuxtjs.dev/config-build)
   build: {
+  },
+
+  generate: {
+    fallback: true
   }
 }

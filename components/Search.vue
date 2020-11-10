@@ -11,7 +11,7 @@
             <li class="total" v-if="total">Total &nbsp; <b>{{total}}</b></li>
 
             <li v-for="(user, i) in userlist" :key="i" @click="total = 0">
-                <nuxt-link :to="`/about-user/${user.login}`">    
+                <nuxt-link :to="`/user/${user.login}`">    
                         <img :src="user.avatar_url" class="avatar" width="30px" height="30px"/>
                         {{ user.login }}
                 </nuxt-link>
