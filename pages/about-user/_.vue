@@ -111,23 +111,42 @@
 
     .flip-list-move {
         transition: transform 0.5s;
-        }
-        .no-move {
+    }
+    .no-move {
         transition: transform 0s;
-        }
-        .ghost {
+    }
+    .ghost {
         opacity: 0.5;
         background: #c8ebfb;
-        }
-        .list-group {
+    }
+    .list-group {
         min-height: 20px;
-        }
-        .list-group-item {
+    }
+    .list-group-item {
         cursor: move;
-        }
-        .list-group-item i {
+    }
+    .list-group-item i {
         cursor: pointer;
+    }
+
+    @media only screen and (max-width: 320px) {
+        .container {
+            flex-direction: column;
         }
+    
+        .list-group > span {
+            flex-direction: column;
+        }
+
+        .list-group .list-group-item {
+            width: 100%;
+        }
+
+        .repo-description {
+            white-space: normal;
+            word-break: break-word;
+        }
+    }
 
 </style>
 <script>

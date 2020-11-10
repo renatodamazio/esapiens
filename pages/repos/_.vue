@@ -97,6 +97,28 @@
     .list-default li b {
         opacity: 0.5;
     }
+
+
+     @media only screen and (max-width: 320px) {
+        .container {
+            flex-direction: column;
+        }
+
+        h1 a {
+            margin-bottom: var(--space-md);
+        }
+    
+        .title {
+            word-break: break-all;
+            flex-direction: column;
+        }
+
+        .tag {
+            display: flex;
+            margin: 4px;
+        }
+    }
+
 </style>
 
 <script>

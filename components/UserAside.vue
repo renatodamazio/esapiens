@@ -104,4 +104,10 @@ export default {
         width: 16px;
         text-align: center;
     }
+
+    @media only screen and (max-width: 320px) {
+        .user-info {
+            width: 100%;
+        }
+    } 
 </style>
