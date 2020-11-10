@@ -1,9 +1,17 @@
 <template>
   <div>
+    <search/>
+
     <Nuxt />
   </div>
 </template>
-
+<script>
+export default {
+  components: {
+    Search: () => import('@/components/Search.vue')
+  }
+}
+</script>
 <style>
   * {
     padding: 0;

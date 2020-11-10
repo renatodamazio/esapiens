@@ -7,10 +7,10 @@
                 <input type="text" class="search" autofocus v-model="username"  v-debounce:400ms="searchByUser" placeholder="Pesquisar por:" />
             </div>
         </div>
-        <ul class="search-list">
+        <ul class="search-list" v-if="total > 0">
             <li class="total" v-if="total">Total &nbsp; <b>{{total}}</b></li>
 
-            <li v-for="(user, i) in userlist" :key="i">
+            <li v-for="(user, i) in userlist" :key="i" @click="total = 0">
                 <nuxt-link :to="`/about-user/${user.login}`">    
                         <img :src="user.avatar_url" class="avatar" width="30px" height="30px"/>
                         {{ user.login }}
@@ -26,6 +26,8 @@
 <style scoped>
     .search-wrapper {
         padding: var(--space-md);
+        z-index: 9999;
+        border-bottom: 1px solid #eee;
     }
 
     .input-search-container {
@@ -78,7 +80,9 @@
         border-radius: 3px;
         position: absolute;
         width: 100%;
+        background: #fff;
         left: 0;
+        z-index: 999;
         top: 77px;
         height: calc(100% - 80px);
         overflow: auto;
@@ -108,6 +112,11 @@
     }
 </style>
 <script>
+import Vue from 'vue'
+import vueDebounce from 'vue-debounce'
+ 
+Vue.use(vueDebounce);
+
 export default {
     data() {
         return {
