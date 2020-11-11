@@ -99,7 +99,7 @@
     }
 
 
-     @media only screen and (max-width: 320px) {
+     @media only screen and (max-width: 800px) {
         .container {
             flex-direction: column;
         }

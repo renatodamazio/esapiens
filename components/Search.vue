@@ -1,7 +1,11 @@
 <template>
     <div class="search-wrapper">
         <div class="input-search-container">
-            <img src="/gitlogo.png" width="40px" height="40px">
+            
+            <nuxt-link :to="`/`" class="github-logo">
+                <img src="/gitlogo.png" width="40px" height="40px">
+            </nuxt-link>
+
             <div class="input-search-wrapper">
                 <img v-if="loading" src="/loading.gif" width="15px" height="15px" class="loading" alt="">
                 <input type="text" class="search" autofocus v-model="username"  v-debounce:400ms="searchByUser" placeholder="Pesquisar por:" />
@@ -109,6 +113,10 @@
 
     .avatar {
         margin-right: 8px;
+    }
+
+    .github-logo {
+        width: 80px;
     }
 </style>
 <script>

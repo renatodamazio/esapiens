@@ -132,12 +132,12 @@
         cursor: pointer;
     }
 
-    @media only screen and (max-width: 320px) {
+    @media only screen and (max-width: 800px) {
         .container {
             flex-direction: column;
         }
     
-        .list-group > span {
+        .list-group > span { 
             flex-direction: column;
         }
 
