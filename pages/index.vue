@@ -54,6 +54,11 @@
 </style>
 <script>
 export default {
+  head() {
+    return {
+      title: ' Página inicial'
+    }
+  },
   mounted() {
   },
 

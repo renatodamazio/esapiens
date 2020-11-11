@@ -125,6 +125,11 @@
 import axios from 'axios';
 
 export default {
+    head() {
+        return {
+            title: 'Detalhes do repositório'
+        }
+    },
     data() {
         return {
             repo: [],

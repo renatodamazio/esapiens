@@ -157,7 +157,7 @@ import axios from 'axios';
 export default {
     head() {
         return {
-            title: 'Github - About user'
+            title: 'Repositórios'
         }
     },
 
