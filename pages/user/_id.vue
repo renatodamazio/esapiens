@@ -4,7 +4,7 @@
 
         <aside class="repos">
             <h3 class="title">{{ user.public_repos }} Repositórios.</h3>
-            <draggable v-model="repos" class="list-group" tag="ul">
+            <draggable v-model="repos" class="list-group" tag="ul" v-bind="dragOptions">
                 <transition-group type="transition" :name="!drag ? 'flip-list' : null">
                     <div v-for="(repo, key) in repos" :key="key" class="list-group-item">
                         <nuxt-link :to="`/repos/${repo.full_name}`">
@@ -172,6 +172,16 @@ export default {
     components: {
         draggable: () => import('vuedraggable'),
         UserAside: () => import('@/components/UserAside.vue')
+    },
+
+    computed: {
+      dragOptions() {
+        return {
+          animation: 200,
+          delay: 240,
+          delayOnTouchOnly: true
+        };
+      }
     },
 
     mounted() {
