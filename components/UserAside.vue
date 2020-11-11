@@ -1,7 +1,9 @@
 <template>
     <div>
         <div class="user-info">
-            <img :src="user.avatar_url" width="180px" height="180px" class="avatar">
+            <nuxt-link :to="`/user/${user.login}`" class="cover-user">
+                <img :src="user.avatar_url" width="180px" height="180px" class="avatar">
+            </nuxt-link>
             <div class="user-bio"> 
                 <h2 class="text-center">{{ user.name }}</h2>
                 <p class="user-login text-center">{{ user.login }}</p>
@@ -69,6 +71,7 @@ export default {
 
     .avatar {
         border: 2px solid;
+        transition: var(--transition-default);
     }
 
     .user-login {
@@ -103,6 +106,10 @@ export default {
     .icon {
         width: 16px;
         text-align: center;
+    }
+
+    .cover-user:hover img {
+        border: 2px solid rgb(var(--color-primary));
     }
 
     @media only screen and (max-width: 800px) {
