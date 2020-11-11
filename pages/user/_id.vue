@@ -8,7 +8,7 @@
                 <transition-group type="transition" :name="!drag ? 'flip-list' : null">
                     <div v-for="(repo, key) in repos" :key="key" class="list-group-item">
                         <nuxt-link :to="`/repos/${repo.full_name}`">
-                            <h3 class="repo-title">
+                            <h3 class="repo-title flex justify-between align-center">
                                 {{ repo.name }}
                                 <i class="repo-status" :class="repo.disabled ? 'disabled' : ''"></i>
                             </h3> 

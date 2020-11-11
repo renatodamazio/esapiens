@@ -89,6 +89,10 @@ export default {
     justify-content: flex-end;
   }
 
+  .align-center {
+    align-items: center;
+  }
+
   .tag {
     padding: var(--space-sm);
     border: 1px solid rgb(var(--color-dark));
