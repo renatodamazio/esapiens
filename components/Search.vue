@@ -1,23 +1,27 @@
 <template>
     <div class="search-wrapper">
         <div class="input-search-container">
-            
+            <!-- Logo também link que envia para home -->
             <nuxt-link :to="`/`" class="github-logo">
                 <img src="/gitlogo.png" width="40px" height="40px">
             </nuxt-link>
 
+            <!-- Loading, aparece quando há uma interação com o campo. -->
             <div class="input-search-wrapper">
                 <img v-if="loading" src="/loading.gif" width="15px" height="15px" class="loading" alt="">
+                <!-- Debounce é uma diretiva para chamar algum evento no final da interação, caso hava uma nova interação, a anterior é cancelada -->
                 <input type="text" class="search" autofocus v-model="username"  v-debounce:400ms="searchByUser" placeholder="Pesquisar por:" />
             </div>
         </div>
+
         <ul class="search-list" v-if="total > 0">
             <li class="total" v-if="total">Total &nbsp; <b>{{total}}</b></li>
 
             <li v-for="(user, i) in userlist" :key="i" @click="total = 0">
                 <nuxt-link :to="`/user/${user.login}`">    
-                        <img :src="user.avatar_url" class="avatar" width="30px" height="30px"/>
-                        {{ user.login }}
+                    <img :src="user.avatar_url" class="avatar" width="30px" height="30px"/>
+                   
+                    {{ user.login }}
                 </nuxt-link>
             </li>
 
@@ -150,7 +154,8 @@ export default {
             this.userlist = [];
             this.loading = true;
 
-            const url = `https://api.github.com/search/users?q=${this.username}`
+            const url = `https://api.github.com/search/users?q=${this.username}`;
+            
             this.$axios.get(url)
                 .then((resp) => {
                     this.total = (resp.data.items).length;

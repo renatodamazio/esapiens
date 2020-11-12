@@ -1,19 +1,23 @@
 <template>
     <div>
         <div class="user-info">
+            <!-- Imagem do usuário, com link para a página /user -->
             <nuxt-link :to="`/user/${user.login}`" class="cover-user">
                 <img :src="user.avatar_url" width="180px" height="180px" class="avatar">
             </nuxt-link>
+
             <div class="user-bio"> 
                 <h2 class="text-center">{{ user.name }}</h2>
                 <p class="user-login text-center">{{ user.login }}</p>
+                
                 <hr>
+                
                 <div class="user-info-counters">
                     <div v-if="user.bio" class="user-info-small">
                         {{ user.bio }}
                     </div>
 
-                    <div  v-if="user.location" class="user-info-small">
+                    <div v-if="user.location" class="user-info-small">
                         <i class="fas fa-map-marker-alt icon"></i> {{ user.location }}
                     </div>
                     

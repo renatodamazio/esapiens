@@ -68,7 +68,6 @@ export default {
   }
   /* ----- */
 
-
   .text-sm {
     font-size: var(--space-sm);
   }
